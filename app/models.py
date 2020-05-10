@@ -35,14 +35,14 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+
 class Blog(db.Model):
     id = db.Column(db.Integer,primary_key=True)
-    category = db.Column(db.String(50))
     title = db.Column(db.String(100),nullable=False)
     date_posted = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
-    content = db.Column(db.String(255),nullable=False)
+    blog = db.Column(db.Text,nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
-
+    comment_it = db.relationship('Comments', backref='user_comment',lazy=True)
 
     def save(self):
         db.session.add(self)
@@ -54,4 +54,39 @@ class Blog(db.Model):
 
 
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+        return f"Blog('{self.title}', '{self.date_posted}')"
+
+
+
+
+class Comments(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    comment = db.Column(db.String(255),nullable=False)
+    date_posted = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    blog_id = db.Column(db.Integer,db.ForeignKey('blog.id'))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+
+    def __repr__(self):
+        return f"Comments('{self.comment}', '{self.date_posted}')"
+
+class Subscribe(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    email = db.Column(db.String(100))
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    def __repr__(self):
+        return f"Comments('{self.email}')"
