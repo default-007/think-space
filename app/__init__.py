@@ -1,4 +1,3 @@
- 
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_bootstrap import Bootstrap
@@ -33,12 +32,5 @@ def create_app(config_name):
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint,url_prefix = '/auth')
-
-
-    # setting config
-    # from .requests import configure_request
-    # configure_request(app)
-
-    # Will add the views and forms
 
     return app 
