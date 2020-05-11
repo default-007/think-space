@@ -7,6 +7,8 @@ from flask_login import login_user, login_required, logout_user, current_user
 from ..email import mail_message
 from flask_mail import Message
 from .. import mail
+from ..requests import get_quotes
+
 # Views
 @main.route('/')
 def index():
@@ -15,10 +17,11 @@ def index():
     View root page function that returns the index page and its data
     '''
     title = 'Home - Think|Space'
-    blogs = Blog.query.all()
-    comment = Comments.query.all()
+    # Getting the quotes
+    quotes = get_quotes()
+    print(quotes)
+    return render_template('index.html',title=title,quotes=quotes)
     
-    return render_template('index.html', title=title,blogs=blogs,comment=comment,)
 
 @main.route('/home')
 @login_required
