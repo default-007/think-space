@@ -4,6 +4,8 @@ from flask_bootstrap import Bootstrap
 from config import config_options
 from flask_login import LoginManager
 from flask_uploads import UploadSet,configure_uploads,IMAGES
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -18,13 +20,13 @@ def create_app(config_name):
     #Initializing application
     app = Flask(__name__)
 
+    # Create the app configuration
+    app.config.from_object(config_options[config_name])
+
     #Initializing Flask Extensions
     boostrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
-
-    # Create the app configuration
-    app.config.from_object(config_options[config_name])
 
     # configure UploadSet
     configure_uploads(app,photos)

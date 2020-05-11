@@ -1,5 +1,13 @@
 {% include 'base.html' %}
+<!-- Styles block -->
 
+{% block styles%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+<!--Content block-->
 {% block content%}
-<h1>Welcome Home</h1>
+<div class="container">
+    <h1>Welcome Home</h1>
+</div>
 {%  endblock %}
