@@ -94,8 +94,3 @@ class Subscribe(db.Model):
         return f"Comments('{self.email}')"
 
 
-class Quotes:
-    def __init__(self,author,quote,permalink):
-        self.author = author
-        self.quote = quote
-        self.permalink = permalink
