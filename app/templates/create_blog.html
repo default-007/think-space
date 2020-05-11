@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{super()}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4 mt-4 blog">
+            <div class="card bg-dark text-white">
+                <form action="/blogs" method="POST">
+                    <div class="card-header">
+                        {% if error %}
+                        <p class="alert-alert-danger text-center mt-2 bg-danger">
+                            {{error}}
+                        </p>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <p>Create a blog</p>
+                            <hr>
+                            <input size="50cl" type="text" placeholder="Title" name="title" required>
+                            <br>
+                            <br>
+                            <textarea type="text" name="blog" rows="5" cols="50" placeholder="Write a blog"
+                                required></textarea>
+                            <br>
+                            <input type="submit" value="Submit"
+                                class="btn btn-btn-lg bg-danger text-uppercase mt-5 w-50 text-white">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

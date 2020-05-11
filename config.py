@@ -4,7 +4,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    SECRET_KEY = os.environ.get('letsdothis')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://default-007:expandebles7@localhost/thinkspace'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
     
