@@ -8,43 +8,60 @@
 <!--Content block-->
 {% block content%}
 <div class="container">
-    <h1>Welcome Home</h1>
+    <h1>Welcome to Think | Space</h1>
 </div>
 
-<div class="container home">
+<div class="container">
+    <div class="">
+
+        <form class="" action="/subscribe" method='POST'>
+            <h4>Subscribe</h4>
+            <input type="text" name="email" placeholder="Enter email">
+            <br>
+            <input class="btn btn-primary " type="submit" value="Submit">
+        </form>
+    </div>
     <div class="row">
 
         {% for blog in blogs%}
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-uppercase">
-                    <h5>{{blog.title}}</h5> {{blog.blogyou.username}}
+        <div class="row">
+            <div class="card bg-light text-center">
+                <div class="card-header text-left">
+                    {{blog.blogyou.username}}
+                </div>
+                <div class="card-title  text-uppercase">
+                    <h5>{{blog.title}}</h5>
                 </div>
                 <div class="card-body">
-                    <p>{{blog.blog}}</p>
-
-
-                    <p>{{blog.date_posted.strftime('%Y-%m-%d')}}</p>
-                    <div>
-                        {%  if current_user == blog.blogyou %}
-                        <a class="btn btn-danger" href="{{url_for('main.del_blog',blog_id=blog.id)}}">X</a>
+                    <div style="float: right;">{%  if current_user == blog.blogyou %}
+                        <a class="text-danger" href="{{url_for('main.del_blog',blog_id=blog.id)}}">DeleteBlog</a>
                         {% endif %}
                     </div>
-                    <div class="card">
-                        <h4 class="mt-3">Comments</h4>
+                    <p>{{blog.blog}}</p>
+                </div>
+                <div class="card-body">
+                    <p>{{blog.date_posted.strftime('%Y-%m-%d')}} }</p>
+
+                    <div class="card com">
+                        <h4 class="">Comments</h4>
                         {% for comm in comment %}
                         {% if blog.id == comm.blog_id %}
-                        <p>{{comm.comment}}</p>
-                        <p>{{comm.date_posted.strftime('%y-%m-%d')}}</p>
+                        <div style="float: right;">{%  if current_user == blog.blogyou %}
+                            <a class="text-danger"
+                                href="{{url_for('main.delete',comment_id=comm.id)}}">DeleteComment</a>
+                            {% endif %}
+                        </div>
+                        <div class="divide">
+                            <div class="card-body">{{comm.comment}}</div>
+                            <p class="blockquote">{{comm.date_posted.strftime('%y-%m-%d')}}</p>
+                        </div>
 
-                        {%  if current_user == blog.blogyou %}
-                        <a class="text-danger" href="{{url_for('main.delete',comment_id=comm.id)}}">DeleteComment</a>
-                        {% endif %}
                         {% endif %}
                         {% endfor %}
-                        <form class="mt-3" action="{{url_for('main.comment',blog_id=blog.id)}}" method="post">
-                            <input type="text" name="comment" class="w-100">
-                            <input type="submit" value="Comment" class="btn btn-danger mt-1">
+                        <form class="" style="justify-content: center;"
+                            action="{{url_for('main.comment',blog_id=blog.id)}}" method="post">
+                            <input type="text" name="comment" class="" style="width: 100%;">
+                            <input type="submit" placeholder="Comment" class="btn btn-success">
                         </form>
                     </div>
                 </div>
@@ -53,14 +70,7 @@
 
         {% endfor %}
 
-        <div class="col-md-6">
-            <form class="mt-5 ml-3" action="/subscribe" method='POST'>
-                <h4>Subscribe</h4>
-                <input type="text" name="email" value="Enter email">
-                <br>
-                <input class="btn btn-danger mt-1" type="submit" value="Submit">
-            </form>
-        </div>
+
     </div>
 </div>
 {%  endblock %}
