@@ -6,7 +6,8 @@ class Config:
     '''
     SECRET_KEY = os.environ.get('letsdothis')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://default-007:expandebles7@localhost/thinkspace'
-
+    UPLOADED_PHOTOS_DEST = 'app/static/photos'
+    
 class ProdConfig(Config):
     '''
     Production  configuration child class
