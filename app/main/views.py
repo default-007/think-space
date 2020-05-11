@@ -18,6 +18,16 @@ def index():
     comment = Comments.query.all()
     
     return render_template('index.html', title=title,blogs=blogs,comment=comment,)
+    
+@main.route('/home')
+def home():
+
+    title = 'Home - Think|Space'
+    blogs = Blog.query.all()
+    comment = Comments.query.all()
+    
+    return render_template('home.html', title=title,blogs=blogs,comment=comment,)
+
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -73,7 +83,7 @@ def blogs():
         subscribers = Subscribe.query.all()
         for subscriber in subscribers:
             mail_message("Hello,New Blog has been created", "email/new_blog",subscriber.email,blog=blog)
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.home'))
     return render_template('create_blog.html')
 
 
@@ -82,7 +92,7 @@ def blogs():
 def delete(comment_id):
     comm = Comments.query.get(comment_id)
     comm.delete()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.home'))
 
 
 @main.route('/del/<int:blog_id>', methods=['POST','GET'])
@@ -90,7 +100,7 @@ def delete(comment_id):
 def del_blog(blog_id):
     blog = Blog.query.get(blog_id)
     blog.delete()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.home'))
 
 
 @main.route('/comment/<int:blog_id>', methods=['GET','POST'])
@@ -100,8 +110,8 @@ def comment(blog_id):
         blog = Blog.query.filter_by(id=blog_id).first()
         comment = Comments(comment=comment,blog_id=blog.id)
         comment.save()
-        return redirect(url_for('main.index',blog=blog))
-    return render_template('index.html')
+        return redirect(url_for('main.home',blog=blog))
+    return render_template('home.html')
 
 @main.route('/subscribe', methods=['GET','POST'])
 def subscribe():
@@ -110,11 +120,11 @@ def subscribe():
         email = form.get("email")
         if email==None:
             error = "Enter your email required"
-            return render_template('index.html', error=error)
+            return render_template('home.html', error=error)
         user = Subscribe(email=email)
         user.save()
         users = Subscribe.query.all()
         for user in users:
             mail_message("Hello", "email/subscribe",user.email,user=user)
-        return redirect(url_for("main.index"))
-    return render_template('index.html')
+        return redirect(url_for("main.home"))
+    return render_template('home.html')

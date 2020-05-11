@@ -4,10 +4,8 @@
 {{super()}}
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-4 mt-4 blog">
-            <div class="card bg-dark text-white">
+        <div class="blog">
+            <div class="card">
                 <form action="/blogs" method="POST">
                     <div class="card-header">
                         {% if error %}
@@ -20,14 +18,13 @@
                         <div class="text-center">
                             <p>Create a blog</p>
                             <hr>
-                            <input size="50cl" type="text" placeholder="Title" name="title" required>
+                            <input size="100%" type="text" placeholder="Title" name="title" required>
                             <br>
                             <br>
-                            <textarea type="text" name="blog" rows="5" cols="50" placeholder="Write a blog"
+                            <textarea type="text" name="blog" rows="5" cols="100" placeholder="Write a blog"
                                 required></textarea>
                             <br>
-                            <input type="submit" value="Submit"
-                                class="btn btn-btn-lg bg-danger text-uppercase mt-5 w-50 text-white">
+                            <input type="submit" value="Submit" class="btn bg-danger text-uppercase">
                         </div>
 
                     </div>

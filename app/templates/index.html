@@ -7,70 +7,19 @@
 
 <!--Content block-->
 {% block content%}
-<div class="container">
-    <h1>Welcome to Think | Space</h1>
-</div>
+<div class="containe text-center" style="text-align: center;">
+    <div class="pimg1""></div>
 
-<div class="container">
-    <div class="">
-
-        <form class="" action="/subscribe" method='POST'>
-            <h4>Subscribe</h4>
-            <input type="text" name="email" placeholder="Enter email">
-            <br>
-            <input class="btn btn-primary " type="submit" value="Submit">
-        </form>
+<h1>Welcome to Think | Space</h1>
+<div>
+{% if current_user.is_authenticated%}
+<a id=" start" class="btn btn-danger text-center" href="{{url_for('main.home')}}"><span class="view">View
+            Blogs</span></a>
+        {% else %}
+        <a id="start" class="btn btn-danger text-center" href="{{url_for('auth.login')}}"><span class="view">Sign
+                In</span>
+        </a>
     </div>
-    <div class="row">
-
-        {% for blog in blogs%}
-        <div class="row">
-            <div class="card bg-light text-center">
-                <div class="card-header text-left">
-                    {{blog.blogyou.username}}
-                </div>
-                <div class="card-title  text-uppercase">
-                    <h5>{{blog.title}}</h5>
-                </div>
-                <div class="card-body">
-                    <div style="float: right;">{%  if current_user == blog.blogyou %}
-                        <a class="text-danger" href="{{url_for('main.del_blog',blog_id=blog.id)}}">DeleteBlog</a>
-                        {% endif %}
-                    </div>
-                    <p>{{blog.blog}}</p>
-                </div>
-                <div class="card-body">
-                    <p>{{blog.date_posted.strftime('%Y-%m-%d')}} }</p>
-
-                    <div class="card com">
-                        <h4 class="">Comments</h4>
-                        {% for comm in comment %}
-                        {% if blog.id == comm.blog_id %}
-                        <div style="float: right;">{%  if current_user == blog.blogyou %}
-                            <a class="text-danger"
-                                href="{{url_for('main.delete',comment_id=comm.id)}}">DeleteComment</a>
-                            {% endif %}
-                        </div>
-                        <div class="divide">
-                            <div class="card-body">{{comm.comment}}</div>
-                            <p class="blockquote">{{comm.date_posted.strftime('%y-%m-%d')}}</p>
-                        </div>
-
-                        {% endif %}
-                        {% endfor %}
-                        <form class="" style="justify-content: center;"
-                            action="{{url_for('main.comment',blog_id=blog.id)}}" method="post">
-                            <input type="text" name="comment" class="" style="width: 100%;">
-                            <input type="submit" placeholder="Comment" class="btn btn-success">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {% endfor %}
-
-
-    </div>
+    {% endif %}
 </div>
-{%  endblock %}
+{% endblock %}

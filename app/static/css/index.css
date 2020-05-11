@@ -1,20 +1,28 @@
-body{
-    background-color: #393E41;
-    color: #E94F37;
+body {
+  background-color: #222629;
+  color: #86c232;
 }
-h1{
-    color: #FFF275;
+h1 {
+  color: #61892f;
 }
-.card{
-    margin: 10px;
-    padding: 20px;
-    background-color: #CCC5B9;
+.card {
+  margin: 10px;
+  padding: 20px;
+  padding-bottom: 0%;
+  background-color: #474b4f;
 }
-.com{
-    background-color: #FFF275;
-    color: #E94F37;
-    text-align: left;
+.com {
+  background-color: #6b6e70;
+  color: white;
+  text-align: left;
 }
-.divide{
-    border-bottom: #3FA7D6 solid 3px;
+
+.pimg1 {
+  background-image: url(../photos/5E337392-FED2-08F2-857BD1B9C297E8D8.jpg);
+  object-fit: cover;
+  height: 350px;
+  width: 90%;
+  background-repeat: repeat;
+  margin-left: auto;
+  margin-right: auto;
 }
