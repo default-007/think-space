@@ -16,8 +16,8 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
-    profile_pic_path = db.Column(db.String(255))
-    posts = db.relationship('Post', backref='think|space',lazy=True)
+    blogs = db.relationship('Blog', backref='blogyou',lazy=True)
+    comment = db.relationship('Comments', backref='commenting',lazy=True)
 
 
     @property
@@ -44,11 +44,11 @@ class Blog(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
     comment_it = db.relationship('Comments', backref='user_comment',lazy=True)
 
-    def save(self):
+    def save_blog(self):
         db.session.add(self)
         db.session.commit()
 
-    def delete(self):
+    def delete_blog(self):
         db.session.delete(self)
         db.session.commit()
 
@@ -59,18 +59,18 @@ class Blog(db.Model):
 
 
 
-class Comments(db.Model):
+class Comment(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     comment = db.Column(db.String(255),nullable=False)
     date_posted = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     blog_id = db.Column(db.Integer,db.ForeignKey('blog.id'))
 
-    def save(self):
+    def save_comment(self):
         db.session.add(self)
         db.session.commit()
 
-    def delete(self):
+    def delete_comment(self):
         db.session.delete(self)
         db.session.commit()
 
