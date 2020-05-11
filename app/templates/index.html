@@ -7,14 +7,14 @@
 
 <!--Content block-->
 {% block content%}
-<div class="containe text-center" style="text-align: center;">
-    <div class="pimg1""></div>
+<div class="containe text-center" style="text-align: center; margin-top: 0px;">
+    <div class="pimg1"></div>
 
-<h1>Welcome to Think | Space</h1>
-<div>
-{% if current_user.is_authenticated%}
-<a id=" start" class="btn btn-danger text-center" href="{{url_for('main.home')}}"><span class="view">View
-            Blogs</span></a>
+    <h1>Welcome to Think | Space</h1>
+    <div>
+        {% if current_user.is_authenticated%}
+        <a id=" start" class="btn btn-danger text-center" href="{{url_for('main.home')}}"><span class="view">View
+                Blogs</span></a>
         {% else %}
         <a id="start" class="btn btn-danger text-center" href="{{url_for('auth.login')}}"><span class="view">Sign
                 In</span>
