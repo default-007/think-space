@@ -2,9 +2,10 @@ from flask import render_template, request, redirect, url_for, abort
 from . import main
 from ..models import User, Blog, Subscribe, Comments,Quotes
 from .forms import UpdateProfile
-from .. import db,photos
+from .. import db,photos,mail
 from flask_login import login_user, login_required, logout_user, current_user
-
+from ..email import mail_message
+from flask_mail import Message
 
 # Views
 @main.route('/')
@@ -18,8 +19,9 @@ def index():
     comment = Comments.query.all()
     
     return render_template('index.html', title=title,blogs=blogs,comment=comment,)
-    
+
 @main.route('/home')
+@login_required
 def home():
 
     title = 'Home - Think|Space'

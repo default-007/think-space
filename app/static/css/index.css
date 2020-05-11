@@ -1,6 +1,8 @@
 body {
   background-color: #222629;
   color: #86c232;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 h1 {
   color: #61892f;
@@ -11,6 +13,9 @@ h1 {
   padding-bottom: 0%;
   background-color: #474b4f;
 }
+.card:hover {
+  border: #86c232;
+}
 .com {
   background-color: #6b6e70;
   color: white;
@@ -20,9 +25,15 @@ h1 {
 .pimg1 {
   background-image: url(../photos/5E337392-FED2-08F2-857BD1B9C297E8D8.jpg);
   object-fit: cover;
-  height: 350px;
-  width: 90%;
-  background-repeat: repeat;
   margin-left: auto;
   margin-right: auto;
+  height: 450px;
+  width: 100%;
+  background-repeat: no-repeat;
+}
+.containe {
+  margin-top: 50px;
+}
+.fa-comments-o {
+  color: #86c232;
 }

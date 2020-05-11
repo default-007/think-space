@@ -1,9 +1,9 @@
 {% include 'base.html'%}
 {% block content%}
-<div class="container">
+<div class=" container">
     <div class="">
 
-        <form class="" action="/subscribe" method='POST'>
+        <form class="text-center" action="/subscribe" method='POST'>
             <h4>Subscribe</h4>
             <input type="text" name="email" placeholder="Enter email">
             <br>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="card bg-light text-center">
                 <div class="card-header text-left">
-                    {{blog.blogyou.username}}
+                    <i class="fa fa-user-circle-o" style="font-size:24px"></i> {{blog.blogyou.username}}
                 </div>
                 <div style="float: right;">{%  if current_user == blog.blogyou %}
                     <a href="{{url_for('main.del_blog',blog_id=blog.id)}}"><i class="fa fa-trash-o"
@@ -35,7 +35,8 @@
                     <p>{{blog.date_posted.strftime('%Y-%m-%d')}}</p>
 
                     <div class="card com">
-                        <h4 class="">Comments</h4>
+
+                        <h4 class=""><i class="fa fa-comments-o" style="font-size:24px;"></i> Comments</h4>
                         {% for comm in comment %}
                         {% if blog.id == comm.blog_id %}
                         <div style="float: right;">{%  if current_user == blog.blogyou %}
