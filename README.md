@@ -30,6 +30,11 @@ Project is then deployed to heroku
 
 https://think-space07.herokuapp.com/
 
+## ScreenShots
+
+<img src="https://github.com/default-007/think-space/master/app/static/photos/indexpg.png">
+<img src="https://github.com/default-007/think-space/master/app/static/photos/homepg.png">
+
 ## Set-up instructions and installations
 
 - Navigate to the projects folder then run `python3 -m venv virtual`
