@@ -5,7 +5,7 @@ class Config:
     General configuration parent class
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://default-007:expandebles7@localhost/thinkspace'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -31,7 +31,7 @@ class DevConfig(Config):
     '''
 
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://default-007:expandebles7@localhost/thinkspace'
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://default-007:expandebles7@localhost/thinkspace'
 
 config_options = {
 'development':DevConfig,
